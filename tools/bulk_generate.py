@@ -1,17 +1,18 @@
 import subprocess
 import argparse
 import json
-import tqdm
 import sys
 import os
 
 def generate(modules):
-    progress = tqdm.tqdm(range(0, len(modules)))
+    index = 1
     for module, version in modules.items():
         out = subprocess.check_output(["python3", "generate.py", module, version])
         with open(f"../src/gi-stubs/repository/{module}.pyi", "wb") as file:
             file.write(out)
-        progress.update(1)
+        print(f"Generating... ({index}/{len(modules)})", end="\r")
+        index += 1
+    print()
 
 def table(_dict: dict, row_names=None, _spaces=4, suffix=""):
     length_list = [len(x) for x in _dict]
