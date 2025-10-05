@@ -61,7 +61,7 @@ def search_grep(gp_s):
 
         return files
     else:
-        list_with_grep("/usr/share/gir-1.0/", gp_s)
+        return list_with_grep("/usr/share/gir-1.0/", gp_s)
 
 
 if __name__ == "__main__":
